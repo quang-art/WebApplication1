@@ -1,0 +1,38 @@
+﻿@model WebApplication1.Models.Student
+
+<h2>Kết quả đăng ký</h2>
+
+<p>Cảm ơn bạn <strong>@Model.MSSV - @Model.HoTen</strong> đã đăng ký chuyên ngành <strong>@Model.ChuyenNganh</strong>.</p>
+<p>Số lượng sinh viên đã đăng ký ngành giống bạn là: <strong>@ViewBag.Count</strong></p>
+
+<h3>Danh sách sinh viên đã đăng ký</h3>
+@if (ViewBag.AllStudents != null && ViewBag.AllStudents.Count > 0)
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>MSSV</th>
+                <th>Họ tên</th>
+                <th>Điểm TB</th>
+                <th>Chuyên ngành</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in ViewBag.AllStudents)
+            {
+                <tr>
+                    <td>@student.MSSV</td>
+                    <td>@student.HoTen</td>
+                    <td>@student.DiemTB</td>
+                    <td>@student.ChuyenNganh</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Chưa có sinh viên nào đăng ký.</p>
+}
+
+<a asp-action="Index" class="btn btn-primary">Quay lại đăng ký</a>
